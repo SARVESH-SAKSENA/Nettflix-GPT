@@ -1,8 +1,8 @@
-import './App.css';
+
 
 function App() {
   return (
-    <div className="App">
+    <div className="text-3xl text-black border-black border-8 p-4 ">
       Hello checking git configuration 
     </div>
   );
