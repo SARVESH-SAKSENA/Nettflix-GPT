@@ -1,9 +1,21 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { LOGIN_BG } from "../utils/constant";
+import { isvalid } from "../utils/validate";
 
 const Login = () => {
+
+  const email = useRef();
+  const password = useRef();
+
   const [isSignInForm, setIsSignInForm] = useState(true);
+  const [errorMessage , setErrorMessage] = useState(null);
+
+  const handleValidation = () => {
+    const message = isvalid(email.current.value , password.current.value);
+    setErrorMessage(message);
+
+  }
 
   const toggleSignIn = () => {
     setIsSignInForm(!isSignInForm);
@@ -15,7 +27,7 @@ const Login = () => {
       <div className="absolute">
         <img src={LOGIN_BG} alt="bg" className="w-full h-full"></img>
       </div>
-      <form className="bg-black absolute w-4/12 p-12 mx-auto right-0 left-0 my-36 text-white rounded-lg bg-opacity-80">
+      <form onSubmit={(e)=>e.preventDefault()} className="bg-black absolute w-4/12 p-12 mx-auto right-0 left-0 my-36 text-white rounded-lg bg-opacity-80">
         <h1 className="text-bold text-4xl pb-12 pt-6">
           {isSignInForm ? "Sign In" : "Sign Up"}
         </h1>
@@ -28,21 +40,24 @@ const Login = () => {
         )}
         <input
           type="text"
+          ref={email}
           placeholder="E-mail id or phone no."
           className="p-3 bg-gray-700 w-full my-3 rounded-lg"
         ></input>
         <input
           type="password"
+          ref={password}
           placeholder="Password"
           className="p-3 bg-gray-700 w-full my-3 rounded-lg"
         ></input>
+        <p className="text-red-600">{errorMessage}</p>
         <input type="checkbox" className="accent-red-600 my-6" />
         <label className="px-1 my-6">Remember me</label>
-        <button className="bg-red-600 w-full p-3 rounded-lg opacity-100">
+        <button className="bg-red-600 w-full p-3 rounded-lg opacity-100" onClick={handleValidation}>
           Sign in
         </button>
         <p onClick={toggleSignIn} className="cursor-pointer my-6">
-          New to Netflix? Sign Up now.
+          {isSignInForm ? "New to Netfilx? Sign Up now" : "Already a user? Sign In now"}
         </p>
       </form>
     </div>
