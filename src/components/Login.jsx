@@ -4,11 +4,19 @@ import { LOGIN_BG } from "../utils/constant";
 import { isvalid } from "../utils/validate";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 
 const Login = () => {
   const email = useRef();
   const password = useRef();
+  const name = useRef();
+
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -27,20 +35,32 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
-          console.log(user);
+          updateProfile(auth.currentUser, {
+            displayName: name.current.value,
+          })
+            .then(() => {
+              const { uid, email, displayName } = user;
+              dispatch(
+                addUser({ uid: uid, email: email, displayName: displayName })
+              );
+            })
+            .catch((error) => {
+              // An error occurred
+              // ...
+            });
+          navigate("/browse");
           // ...
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          
+
           setErrorMessage(errorCode + errorMessage);
         });
-
-
     }
 
     if (message == null && isSignInForm) {
+      //sign in form
       signInWithEmailAndPassword(
         auth,
         email.current.value,
@@ -49,7 +69,11 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
+          const { uid, email, displayName } = user;
+          dispatch(
+            addUser({ uid: uid, email: email, displayName: displayName })
+          );          
+          navigate("/browse");
           // ...
         })
         .catch((error) => {
@@ -81,6 +105,7 @@ const Login = () => {
         {!isSignInForm && (
           <input
             type="text"
+            ref={name}
             placeholder="Name"
             className="p-3 bg-gray-700 w-full my-3 rounded-lg"
           ></input>
