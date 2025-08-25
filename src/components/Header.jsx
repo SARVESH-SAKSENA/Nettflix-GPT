@@ -1,9 +1,10 @@
 import { LOGO } from "../utils/constant";
-import { signOut } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { removeUser } from "../utils/userSlice";
+import { addUser, removeUser } from "../utils/userSlice";
+import { useEffect } from "react";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -16,13 +17,29 @@ const Header = () => {
     signOut(auth)
       .then(() => {
         dispatch(removeUser());
-        navigate("/");
       })
-      .catch((error) => {
+      .catch((error) => {});
+  };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        const { uid, email, displayName } = user;
+        dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
+        navigate("/browse");
+        console.log("login");
+        // ...
+      } else {
+        // User is signed out
         dispatch(removeUser());
         navigate("/");
-      });
-  };
+        console.log("logout");
+      }
+    });
+
+    return unsubscribe();
+  }, []);
 
   return (
     <div className="bg-gradient-to-b from-black flex justify-between absolute z-10 w-full">

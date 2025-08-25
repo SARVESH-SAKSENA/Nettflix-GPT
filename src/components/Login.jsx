@@ -5,8 +5,7 @@ import { isvalid } from "../utils/validate";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { signInWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { useNavigate } from "react-router";
-import { useDispatch } from "react-redux";
+import { useDispatch} from "react-redux";
 import { addUser } from "../utils/userSlice";
 
 const Login = () => {
@@ -14,9 +13,9 @@ const Login = () => {
   const password = useRef();
   const name = useRef();
 
-  const navigate = useNavigate();
 
   const dispatch = useDispatch();
+
 
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -48,7 +47,6 @@ const Login = () => {
               // An error occurred
               // ...
             });
-          navigate("/browse");
           // ...
         })
         .catch((error) => {
@@ -72,8 +70,7 @@ const Login = () => {
           const { uid, email, displayName } = user;
           dispatch(
             addUser({ uid: uid, email: email, displayName: displayName })
-          );          
-          navigate("/browse");
+          );    
           // ...
         })
         .catch((error) => {
