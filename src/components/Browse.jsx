@@ -1,9 +1,14 @@
+import useTrendingMovies from "../hooks/useTrendingMovies";
 import Header from "./Header";
 
 const Browse = () => {
-    return (
-        <div><Header /></div>
-    )
+  useTrendingMovies();
+
+  return (
+    <div>
+      <Header />
+    </div>
+  );
 };
 
 export default Browse;

@@ -3,3 +3,40 @@ export const LOGO =
 
 export const LOGIN_BG =
   "https://assets.nflxext.com/ffe/siteui/vlv3/258d0f77-2241-4282-b613-8354a7675d1a/web/IN-en-20250721-TRIFECTA-perspective_cadc8408-df6e-4313-a05d-daa9dcac139f_large.jpg";
+
+export const API_OPTIONS = {
+  method: 'GET',
+  headers: {
+    accept: 'application/json',
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyODJlMGE0N2Q5ZTUxYWM2YTUwNmFmZjljNDdhZDdiMiIsIm5iZiI6MTc1NjEyMTE0MS40MjUsInN1YiI6IjY4YWM0ODM1NGY0NTdjMjc0ODQ0OTE5YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Ra1n4Os-vaBe8YpGB21Zis_Ll3kg0XPjmx1eDbNc1UU'
+  }
+};
+
+
+// Trakt fetching logic if tmdb does'nt work
+// const fetchTrendingMovies = async () => {
+//   const response = await fetch("https://api.trakt.tv/movies/trending", {
+//     headers: {
+//       "Content-Type": "application/json",
+//       "trakt-api-version": "2",
+//       "trakt-api-key":
+//         "071ff1a644d84ee605f275aabf44910b1b2e59c272246d82f0d36726ccf4908b", // Replace with your client id
+//     },
+//   });
+
+//   const data = await response.json();
+//   console.log(data);
+// };
+
+// const fetchOMDb = async (imdbId) => {
+//   const response = await fetch(
+//     `https://www.omdbapi.com/?i=tt16311594&apikey=5257193f`
+//   );
+//   const data = await response.json();
+//   console.log(data);
+// };
+
+// useEffect(() => {
+//   fetchTrendingMovies();
+//   fetchOMDb();
+// }, []);
