@@ -5,23 +5,23 @@ const VideoBackground = ({id}) => {
 
     const trailer = useSelector((store) => store?.movies?.trailer)
 
-    console.log(trailer);
+    // console.log(trailer);
 
     useTrailer(id);
 
 
     return (
-      <div>
+      <div className="flex flex-nowrap">
         <iframe
-          className="w-screen aspect-video"
+          className="w-screen aspect-video -mt-8"
           src={
             "https://www.youtube.com/embed/" +
             trailer?.key +
-            "?&autoplay=1&mute=1&showinfo=1&loop=1&controls=0&autohide=0"
+            "?&autoplay=1&mute=1&showinfo=1&playlist="+trailer?.key+"&loop=1&controls=0&autohide=0"
           }
           title="YouTube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
+          referrerPolicy="strict-origin-when-cross-origin"
         ></iframe>
       </div>
     );

@@ -17,7 +17,11 @@ const Body = () => {
     }
   ]);
 
-  return <RouterProvider router={appRoute} />;
+  return (
+    <div >
+      <RouterProvider router={appRoute} />
+    </div>
+  );
 };
 
 export default Body;

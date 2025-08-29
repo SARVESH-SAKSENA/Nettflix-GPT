@@ -7,9 +7,11 @@ function App() {
 
   
   return (
-    <Provider store={appStore}>
-      <Body />
-    </Provider>
+    <div >
+      <Provider store={appStore}>
+        <Body />
+      </Provider>
+    </div>
   );
 }
 

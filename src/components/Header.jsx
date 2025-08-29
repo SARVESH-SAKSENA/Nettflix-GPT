@@ -29,13 +29,13 @@ const Header = () => {
         const { uid, email, displayName } = user;
         dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
         navigate("/browse");
-        console.log("login");
+        // console.log("login");
         // ...
       } else {
         // User is signed out
         dispatch(removeUser());
         navigate("/");
-        console.log("logout");
+        // console.log("logout");
       }
     });
 
