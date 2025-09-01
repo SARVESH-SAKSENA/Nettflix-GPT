@@ -90,7 +90,7 @@ const Login = () => {
     <div>
       <Header />
       <div className="absolute">
-        <img src={LOGIN_BG} alt="bg" className="w-full h-full"></img>
+        <img src={LOGIN_BG} alt="bg" className="w-screen h-screen"></img>
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}
@@ -110,7 +110,7 @@ const Login = () => {
         <input
           type="text"
           ref={email}
-          placeholder="E-mail id or phone no."
+          placeholder="E-mail id "
           className="p-3 bg-gray-700 w-full my-3 rounded-lg"
         ></input>
         <input
@@ -126,7 +126,7 @@ const Login = () => {
           className="bg-red-600 w-full p-3 rounded-lg opacity-100"
           onClick={handleAuth}
         >
-          Sign in
+          {isSignInForm ? "Sign In" : "Sign Up"}
         </button>
         <p onClick={toggleSignIn} className="cursor-pointer my-6">
           {isSignInForm

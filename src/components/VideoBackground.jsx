@@ -13,7 +13,7 @@ const VideoBackground = ({id}) => {
     return (
       <div className="flex flex-nowrap">
         <iframe
-          className="w-screen aspect-video -mt-8"
+          className="w-screen aspect-video -mt-12"
           src={
             "https://www.youtube.com/embed/" +
             trailer?.key +

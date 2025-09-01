@@ -1,6 +1,6 @@
 const VideoInfo = ({ title, overview }) => {
   return (
-    <div className="w-[100%] -mt-8 text-white aspect-video p-24 absolute pt-[20%] bg-gradient-to-r from-black">
+    <div className="w-[100%] -mt-12 text-white aspect-video p-24 absolute pt-[20%] bg-gradient-to-r from-black">
       <h1 className="text-6xl my-4 w-5/12">{title}</h1>
       <p className="text-base my-4 w-1/3">{overview}</p>
       <div className="flex">
