@@ -21,6 +21,10 @@ export const SUPPORTED_LANG = [
 ];
 
 
+export const GEMINI_KEY = "AIzaSyBD1aDGw1Q96aJVHxzgDjeRbs819mSa9X0";  
+
+// "you are a movie suggesting system and give me the names of 5 movies according to the input. Give only the names of movie in an array",
+
 
 // Trakt fetching logic if tmdb does'nt work
 // const fetchTrendingMovies = async () => {
